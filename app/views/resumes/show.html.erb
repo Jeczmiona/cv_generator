@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+
+<h1><%= @resume.name %></h1>
+<%= image_tag(@resume.picture_url, :width => 300) if @resume.picture.present? %>
+
+
+
+<p>
+  <h2>Phone:</h2>
+  <%= @resume.phone %>
+</p>
+
+<p>
+  <h2>Email:</h2>
+  <%= @resume.email %>
+</p>
+<p>
+  <h2>Education:</h2>
+  <% for education in @resume.educations %>
+  <strong>
+  <%= education.start_date.strftime("%Y.%m.%d") %>
+  -
+  <%= education.end_date.strftime("%Y.%m.%d") %>
+</strong>
+<p>
+  <h3>
+  <%= education.name %>
+</h3>
+</p>
+
+<p>
+  <h3>Faculty:</h3>
+  <%= education.faculty %>
+</p>
+<% end %>
+
+<p>
+  <h2>Experience:</h2>
+  <% for company in @resume.companies %>
+  <strong>
+  <%= company.start_date.strftime("%Y.%m.%d") %>
+  -
+  <%= company.end_date.strftime("%Y.%m.%d") %>
+</strong>
+  <p>
+    <h3>
+   <%= company.name %>
+ </h3>
+   </p>
+   <p>
+    <%= company.responsibilities %>
+    </p>
+  <% end %>
+</p>
+
+<p>
+  <h2>Courses:</h2>
+  <%= @resume.courses %>
+</p>
+
+<p>
+  <h2>Hobby:</h2>
+  <%= @resume.hobby %>
+</p>
+
+<%= link_to 'Edit', edit_resume_path(@resume) %> |
+<%= link_to 'Back', resumes_path %>
